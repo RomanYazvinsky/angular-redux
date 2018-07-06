@@ -1,0 +1,15 @@
+<div *ngIf="!creation">
+  <ul>
+    <li *ngFor="let note of notes" (click)="onSelect(note)">
+      <app-simple-note [title]="note.title"></app-simple-note>
+    </li>
+  </ul>
+</div>
+<div *ngIf="selected!=null">
+  <app-note [note]="selected"></app-note>
+  <button (click)="add()" *ngIf="creation">Save</button>
+  <button (click)="cancel()" *ngIf="creation">Cancel</button>
+</div>
+<button *ngIf="!creation" (click)="createNew()">Add</button>
+
+<button *ngIf="!creation && selected!=null" (click)="delete()">Delete</button>
