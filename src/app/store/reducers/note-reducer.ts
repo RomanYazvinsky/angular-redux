@@ -15,7 +15,7 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: noteAction.Action) {
   switch (action.type) {
-    case '[Notes] add One': {
+    case noteAction.ADD_ONE: {
       const newNote: Note = action.payload;
       newNote.id = state.notes.length;
       return {
@@ -24,38 +24,36 @@ export function reducer(state = initialState, action: noteAction.Action) {
         notes: [...state.notes, newNote]
       };
     }
-    case '[Notes] Select': {
+    case noteAction.SELECT: {
       const note = action.payload;
       return {
         ...state,
         selected: note
       };
     }
-    case '[Notes] set all': {
+    case noteAction.SET: {
       const newNotes = action.payload;
       const newIds = [];
-      newNotes.forEach(function (item, i, arr) {
+      newNotes.forEach(function (item, i) {
         newIds.push(i);
       });
-      const a = {
+      return {
         ...state,
         ids: [...newIds],
         notes: [...newNotes]
       };
-      return a;
     }
-    case '[Notes] delete': {
+    case noteAction.DELETE: {
       const delNote = action.payload;
       state.ids.splice(state.ids.indexOf(delNote.id), 1);
       const newIds = [...state.ids];
       state.notes.splice(state.notes.indexOf(delNote), 1);
       const newNotes = [...state.notes];
-      const a = {
+      return {
         ...state,
         ids: [...newIds],
         notes: [...newNotes]
       };
-      return a;
     }
     default: {
       return {...state};
