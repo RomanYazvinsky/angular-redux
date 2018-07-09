@@ -16,7 +16,11 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.noteService.notes.subscribe(value => this.notes = value);
+    try {
+      this.noteService.notes.subscribe(value => this.notes = value);
+    } catch (e) {
+      alert('Server is unavailable');
+    }
   }
 
   onSelect(note: Note) {
@@ -28,11 +32,11 @@ export class NotesComponent implements OnInit {
     this.creation = true;
   }
 
-  add(note: Note) {
+  async add(note: Note) {
     if (!note) {
-      throw new Error('Argument is null! Nothing to add');
+      throw new Error('Argument is null! Nothing to addOrEdit');
     }
-    this.noteService.add(note);
+    await this.noteService.addOrEdit(note);
     this.creation = false;
   }
 

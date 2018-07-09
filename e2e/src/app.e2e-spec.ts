@@ -11,4 +11,10 @@ describe('workspace-project App', () => {
     page.navigateTo();
     expect(page.getNotesElement()).toBeTruthy();
   });
+
+  it('should show addOrEdit form after clicking addOrEdit button', function () {
+    page.navigateTo();
+    page.clickAddButton();
+    expect(page.isCreation).toBeTruthy();
+  });
 });

@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import {browser, by, element} from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -9,8 +9,19 @@ export class AppPage {
     return element(by.css('app-root h1')).getText();
   }
 
+  getTitle() {
+    return browser.getTitle();
+  }
+
   getNotesElement() {
     return element(by.tagName('app-notes'));
   }
 
+  clickAddButton() {
+    element(by.buttonText('Add')).click();
+  }
+
+  isCreation() {
+    return element(by.tagName('app-note'));
+  }
 }

@@ -16,13 +16,7 @@ export const initialState: State = {
 export function reducer(state = initialState, action: noteAction.Action) {
   switch (action.type) {
     case noteAction.ADD_ONE: {
-      const newNote: Note = action.payload;
-      newNote.id = state.notes.length;
-      return {
-        ...state,
-        ids: [...state.ids, newNote.id],
-        notes: [...state.notes, newNote]
-      };
+      return add(action.payload, state);
     }
     case noteAction.SELECT: {
       const note = action.payload;
@@ -44,16 +38,15 @@ export function reducer(state = initialState, action: noteAction.Action) {
       };
     }
     case noteAction.DELETE: {
-      const delNote = action.payload;
-      state.ids.splice(state.ids.indexOf(delNote.id), 1);
-      const newIds = [...state.ids];
-      state.notes.splice(state.notes.indexOf(delNote), 1);
-      const newNotes = [...state.notes];
-      return {
-        ...state,
-        ids: [...newIds],
-        notes: [...newNotes]
-      };
+      return remove(action.payload, state);
+    }
+    case noteAction.ADD_OR_EDIT: {
+      const newNote: Note = action.payload;
+      const notes = state.notes;
+      if (notes.includes(newNote)) {
+        remove(newNote, state);
+      }
+      return add(newNote, state);
     }
     default: {
       return {...state};
@@ -61,6 +54,26 @@ export function reducer(state = initialState, action: noteAction.Action) {
   }
 }
 
+function add(note: Note, state: State) {
+  note.id = state.notes.length;
+  return {
+    ...state,
+    ids: [...state.ids, note.id],
+    notes: [...state.notes, note]
+  };
+}
+
+function remove(note: Note, state: State) {
+  state.ids.splice(state.ids.indexOf(note.id), 1);
+  const newIds = [...state.ids];
+  state.notes.splice(state.notes.indexOf(note), 1);
+  const newNotes = [...state.notes];
+  return {
+    ...state,
+    ids: [...newIds],
+    notes: [...newNotes]
+  };
+}
 export const getIds = (state: State) => state.ids;
 export const getNotes = (state: State) => state.notes;
 export const getSelected = (state: State) => state.selected;
