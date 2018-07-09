@@ -46,7 +46,4 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     expect(component.title).toBe('Hello world!');
   });
-  /*it('should add app-notes component', async(done => {
-    expect(element.querySelector('app-notes')).toBeTruthy();
-  }));*/
 });

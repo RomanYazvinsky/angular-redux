@@ -18,7 +18,7 @@ export class AppPage {
   }
 
   clickAddButton() {
-    element(by.buttonText('Add')).click();
+    element(by.buttonText('New')).click();
   }
 
   isCreation() {

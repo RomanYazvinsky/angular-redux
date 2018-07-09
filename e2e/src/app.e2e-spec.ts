@@ -12,7 +12,7 @@ describe('workspace-project App', () => {
     expect(page.getNotesElement()).toBeTruthy();
   });
 
-  it('should show addOrEdit form after clicking addOrEdit button', function () {
+  it('should show creational form after clicking New button', function () {
     page.navigateTo();
     page.clickAddButton();
     expect(page.isCreation).toBeTruthy();
