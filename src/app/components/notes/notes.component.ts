@@ -28,13 +28,19 @@ export class NotesComponent implements OnInit {
     this.creation = true;
   }
 
-  add() {
-    this.noteService.add(this.selected);
+  add(note: Note) {
+    if (!note) {
+      throw new Error('Argument is null! Nothing to add');
+    }
+    this.noteService.add(note);
     this.creation = false;
   }
 
-  delete() {
-    this.noteService.delete(this.selected);
+  delete(note: Note) {
+    if (!note) {
+      throw new Error('Argument is null! Nothing to delete');
+    }
+    this.noteService.delete(note);
     if (this.notes.length === 0) {
       this.creation = true;
       this.createNew();

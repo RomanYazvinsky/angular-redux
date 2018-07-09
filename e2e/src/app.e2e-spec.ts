@@ -7,8 +7,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display app-notes module', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to WebProjects!');
+    expect(page.getNotesElement()).toBeTruthy();
   });
 });

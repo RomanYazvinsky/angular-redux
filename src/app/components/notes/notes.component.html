@@ -7,9 +7,8 @@
 </div>
 <div *ngIf="selected!=null">
   <app-note [note]="selected"></app-note>
-  <button (click)="add()" *ngIf="creation">Save</button>
+  <button (click)="add(selected)" *ngIf="creation">Save</button>
   <button (click)="cancel()" *ngIf="creation">Cancel</button>
 </div>
 <button *ngIf="!creation" (click)="createNew()">Add</button>
-
-<button *ngIf="!creation && selected!=null" (click)="delete()">Delete</button>
+<button *ngIf="!creation && selected!=null" (click)="delete(selected)">Delete</button>

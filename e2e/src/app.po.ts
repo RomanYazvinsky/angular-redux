@@ -8,4 +8,9 @@ export class AppPage {
   getParagraphText() {
     return element(by.css('app-root h1')).getText();
   }
+
+  getNotesElement() {
+    return element(by.tagName('app-notes'));
+  }
+
 }
