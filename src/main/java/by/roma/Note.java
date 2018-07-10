@@ -1,11 +1,12 @@
 package by.roma;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Note {
+public class Note implements Serializable {
     private Integer id;
     private String title;
-    private String author;
+    private Integer userId;
     private String text;
 
     public Integer getId() {
@@ -25,13 +26,6 @@ public class Note {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     public String getText() {
         return text;
@@ -41,18 +35,25 @@ public class Note {
         this.text = text;
     }
 
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Note note = (Note) o;
-        return Objects.equals(title, note.title) &&
-                Objects.equals(author, note.author) &&
-                Objects.equals(text, note.text);
+        return note.id.equals(this.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, text);
+        return Objects.hash(userId, "Who let the dogs out? Woof, woof, woof");
     }
+
 }
