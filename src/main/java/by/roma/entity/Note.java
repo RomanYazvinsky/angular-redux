@@ -1,4 +1,4 @@
-package by.roma;
+package by.roma.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -48,7 +48,7 @@ public class Note implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Note note = (Note) o;
-        return note.id.equals(this.id);
+        return note.id.equals(this.id) ;
     }
 
     @Override

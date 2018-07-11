@@ -1,4 +1,4 @@
-package by.roma;
+package by.roma.entity;
 
 public class Dto<T> {
     private T data;
